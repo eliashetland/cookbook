@@ -1,0 +1,9 @@
+body{
+    margin:0;
+    background-color: var(--background);
+}
+
+*{
+    font-family: 'Rubik', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}

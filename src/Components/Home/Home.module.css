@@ -1,0 +1,84 @@
+
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  width: 100%;
+  min-height: 80vh;
+    align-items: center;
+}
+
+.content{
+
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    width: 90%;
+    
+}
+
+.searchBar {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background-color: var(--foreground);
+    color: var(--text);
+    gap: 10px;
+
+}
+
+.searchInput{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    padding: 0px 5px;
+    border: 1px solid var(--border);
+    background-color: var(--foreground);
+    color: var(--text);
+    
+}
+
+.recipeList {
+
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background-color: var(--foreground);
+  text-align: center;
+  color: var(--text);
+}
+
+.listElement {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  margin: 10px;
+  background-color: var(--foreground);
+  border-radius: 5px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  color: var(--text);
+  height: 100px;
+}
+
+.recipeLink {
+
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
