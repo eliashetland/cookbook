@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function Header() {
@@ -7,7 +8,7 @@ export default function Header() {
         <ul>
           {localStorage.getItem("token") && (
             <li>
-              <a href="/cookbook/create">Ny oppskrift</a>
+              <Link to="/cookbook/create">Ny oppskrift</Link>
             </li>
           )}
           {localStorage.getItem("token") && (
@@ -20,7 +21,7 @@ export default function Header() {
 
           {!localStorage.getItem("token") && (
             <li>
-              <a href="/cookbook/login">Logg inn</a>
+              <Link to="/cookbook/login">Logg inn</Link>
             </li>
           )}
         </ul>
