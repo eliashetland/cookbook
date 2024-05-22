@@ -18,7 +18,6 @@ export default function NewRecipe() {
 
     }
 
-
     return (
         <>
             <div className={styles.body}>
