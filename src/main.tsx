@@ -5,22 +5,16 @@ import "./index.css";
 import "./Colors/lightmode.css";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-import Admin from "./Components/Admin/Admin";
-import pb from "./lib/pocketbase";
+
+
 import RecipeView from "./Components/RecipeView/RecipeView";
 
 
-const isAdmin = async () => {
-  if (!pb.authStore.isAdmin) {
-    await new Promise(() => {
-      window.location.href = "/login";
-    });
-  }
-  return {};
-};
+
 
 const isLoggedIn = async () => {
-  if (pb.authStore.isValid) {
+  //TODO: Implement this function
+  if (true) {
     await new Promise(() => {
       window.location.href = "/";
     });
@@ -38,11 +32,7 @@ const router = createBrowserRouter([
     element: <Login />,
     loader: isLoggedIn,
   },
-  {
-    path: "/admin",
-    element: <Admin />,
-    loader: isAdmin,
-  },
+
   {
     path: "/recipes/:id",
     element: <RecipeView />,
