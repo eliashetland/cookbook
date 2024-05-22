@@ -17,33 +17,33 @@ const redirect = async (path: string) => {
 };
 
 const redirectLoggedIn = async () => {
-  if (localStorage.getItem("token"))redirect("/");
+  if (localStorage.getItem("token"))redirect("/cookbook/");
   return {};
 };
 
 const redirectNotLoggedIn = async () => {
-  if (!localStorage.getItem("token")) redirect("/login");
+  if (!localStorage.getItem("token")) redirect("/cookbook/login");
   return {};
 };
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/cookbook/",
     element: <Home />,
   },
   {
-    path: "/create",
+    path: "cookbook/create",
     element: <NewRecipe />,
     loader: redirectNotLoggedIn,
   },
   {
-    path: "/login",
+    path: "cookbook/login",
     element: <Login />,
     loader: redirectLoggedIn,
   },
 
   {
-    path: "/recipes/:id",
+    path: "cookbook/recipes/:id",
     element: <RecipeView />,
   },
 ]);

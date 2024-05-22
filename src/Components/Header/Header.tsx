@@ -7,7 +7,7 @@ export default function Header() {
         <ul>
           {localStorage.getItem("token") && (
             <li>
-              <a href="/create">Ny oppskrift</a>
+              <a href="/cookbook/create">Ny oppskrift</a>
             </li>
           )}
           {localStorage.getItem("token") && (
@@ -20,7 +20,7 @@ export default function Header() {
 
           {!localStorage.getItem("token") && (
             <li>
-              <a href="/login">Logg inn</a>
+              <a href="/cookbook/login">Logg inn</a>
             </li>
           )}
         </ul>

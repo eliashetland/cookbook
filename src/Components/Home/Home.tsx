@@ -46,7 +46,7 @@ function Home() {
                 <li key={recipe._id} className={styles.listElement}>
                   <Link
                     className={styles.recipeLink}
-                    to={`/recipes/${recipe._id}`}
+                    to={`/cookbook/recipes/${recipe._id}`}
                   >
                     <RecipeCard {...recipe} />
                   </Link>
