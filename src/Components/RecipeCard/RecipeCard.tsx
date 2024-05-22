@@ -1,17 +1,17 @@
-import { RecordModel } from "pocketbase";
 import styles from "./RecipeCard.module.css";
+import { IRecipe } from "../../Model/Recipe";
 
 
 
 
-function RecipeCard(recipe: RecordModel) {
+function RecipeCard(recipe: IRecipe) {
 
 
 
     return (
       <div className={styles.recipeCard}>
         <h2 className={styles.header}>{recipe.title}</h2>
-        <p className={styles.date}>{new Date(recipe.created).toLocaleDateString() }</p>
+        <p className={styles.date}>{recipe.views}</p>
       </div>
     )
   }

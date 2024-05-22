@@ -6,19 +6,23 @@ import "./Colors/lightmode.css";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 
-
 import RecipeView from "./Components/RecipeView/RecipeView";
+import NewRecipe from "./Components/NewRecipe/NewRecipe";
 
+const redirect = async (path: string) => {
+  await new Promise(() => {
+    window.location.href = path;
+  });
+  return {};
+};
 
+const redirectLoggedIn = async () => {
+  if (localStorage.getItem("token"))redirect("/");
+  return {};
+};
 
-
-const isLoggedIn = async () => {
-  //TODO: Implement this function
-  if (true) {
-    await new Promise(() => {
-      window.location.href = "/";
-    });
-  }
+const redirectNotLoggedIn = async () => {
+  if (!localStorage.getItem("token")) redirect("/login");
   return {};
 };
 
@@ -28,9 +32,14 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/create",
+    element: <NewRecipe />,
+    loader: redirectNotLoggedIn,
+  },
+  {
     path: "/login",
     element: <Login />,
-    loader: isLoggedIn,
+    loader: redirectLoggedIn,
   },
 
   {

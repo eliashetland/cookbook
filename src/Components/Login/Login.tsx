@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./Login.module.css";
-import pb from "../../lib/pocketbase";
+import { API } from "../../API/API";
 
-function Login() {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,14 +18,22 @@ function Login() {
     if (!username) return setError("Du må ha brukernavn");
     if (!password) return setError("Du må ha passord");
 
+    const res = await API.post("api/entry/login", { username, password });
     try {
-      const authData = await pb.admins.authWithPassword(username, password);
-      if (authData.admin) {
-        window.location.href = "/admin";
-      } 
-    } catch (error) {
-     
-    }
+      console.log("res");
+      
+      if (!res) return setError("Det oppsto en feil, prøv igjen senere");
+      if (!res.data.isOk) return setError("Feil brukernavn eller passord");
+      if (!res.data.token) return setError("Feil brukernavn eller passord");
+      localStorage.setItem("token", res.data.token);
+      window.location.href = "/";
+
+
+    }catch (error) {
+      setError("Det oppstod en feil, prøv igjen senere");
+    } 
+
+
   };
 
   return (
@@ -69,17 +77,10 @@ function Login() {
           </form>
           {error && <div className={styles.error}>{error}</div>}
 
-          <input
-            type="submit"
-            className={styles.logoutBtn}
-            data-testid="submit-test"
-            value="Logg ut"
-            onClick={() => pb.authStore.clear()}
-          />
+
         </div>
       </div>
     </>
   );
 }
 
-export default Login;

@@ -1,35 +1,36 @@
-import { RecordModel } from "pocketbase";
 import { useEffect, useState } from "react";
+import { IIngredientList } from "../../Model/Recipe";
+import styles from "./Ingredients.module.css";
 
-export default function Ingredients(props: any) {
-  const [ingredients, setIngredients] = useState<RecordModel | null>(null);
+interface IngredientsProps {
+  ingredients: IIngredientList[];
+  factor: number;
+}
+
+export default function Ingredients({ingredients, factor}: IngredientsProps) {
+  const [currentIngredients, setcurrentIngredients] = useState<IIngredientList[] | null>(null);
+  const [currentFactor, setCurrentFactor] = useState<number>(1);
 
   useEffect(() => {
-    load();
-  }, []);
+    setCurrentFactor(factor);
+    setcurrentIngredients(ingredients);
 
-  const load = async () => {
-    try {
-      if (!props) {
-        return;
-      }
-      setIngredients(props.props);
-    } catch (error) {}
-  };
+  }, [ingredients, factor]);
 
   return (
     <>
-      <h1>Du trenger</h1>
+      <h1 className={styles.title}>Du trenger</h1>
 
-      <table>
-        <tbody>
-          {ingredients &&
-            ingredients.map((ingredient: RecordModel) => (
-              <tr key={ingredient[0]}>
+      <table className={styles.table}>
+        <tbody className={styles.tbody}>
+          {currentIngredients &&
+            currentIngredients.map((ingredientList: IIngredientList) => (
+              
+              <tr key={ingredientList._id} className={styles.tr}>
             
-                <td key={ingredient[0] + "0"}>{ingredient[0]}</td>
-                <td key={ingredient[0] + "1"}>{ingredient[1]}</td>
-                <td key={ingredient[0] + "2"}>{ingredient[2]}</td>
+                <td className={styles.ingredient}> {ingredientList.ingredient}</td>
+                <td className={styles.amount}> {(ingredientList.amount * currentFactor).toFixed(1) }</td>
+                <td className={styles.unit}> {ingredientList.unit}</td>
               </tr>
             ))}
         </tbody>

@@ -28,7 +28,9 @@
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid var(--border);
+    /* border: 2px solid var(--border); */
+    box-shadow: 0px 0px 5px var(--border);
+
     background-color: var(--foreground);
     color: var(--text);
     gap: 10px;
@@ -44,10 +46,11 @@
     background-color: var(--foreground);
     color: var(--text);
     
-}
-
-.recipeList {
-
+  }
+  
+  .recipeList {
+    
+    box-shadow: 0px 0px 5px var(--border);
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -55,7 +58,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  border: 2px solid var(--border);
+  /* border: 2px solid var(--border); */
   background-color: var(--foreground);
   text-align: center;
   color: var(--text);
@@ -70,10 +73,12 @@
   margin: 10px;
   background-color: var(--foreground);
   border-radius: 5px;
-  border: 2px solid var(--border);
+  /* border: 2px solid var(--border); */
+  box-shadow: 0px 0px 5px var(--border);
+
   cursor: pointer;
   color: var(--text);
-  height: 100px;
+  height: auto;
 }
 
 .recipeLink {
