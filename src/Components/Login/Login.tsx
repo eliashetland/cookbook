@@ -26,7 +26,7 @@ export default function Login() {
       if (!res.data.isOk) return setError("Feil brukernavn eller passord");
       if (!res.data.token) return setError("Feil brukernavn eller passord");
       localStorage.setItem("token", res.data.token);
-      window.location.href = "/";
+      window.location.href = "/cookbook/";
 
 
     }catch (error) {
