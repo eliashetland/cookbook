@@ -51,6 +51,7 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
       <input
         type="text"
         value={title}
+        placeholder="Tittel"
         onChange={(e) => setTitle(e.target.value)}
       />
 
@@ -63,6 +64,8 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
                 key={index}
                 type="text"
                 value={instruction}
+            placeholder="(f.eks) start med det tørre"
+
                 onChange={(e) => {
                   const newInstructions = [...instructions];
                   newInstructions[index] = e.target.value;
@@ -97,6 +100,8 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
           <input
             type="text"
             value={ingredient.ingredient}
+            placeholder="Ingrediens"
+
             onChange={(e) => {
               const newIngredients = [...ingredients];
               newIngredients[index].ingredient = e.target.value;
@@ -116,6 +121,7 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
           <input
             type="text"
             value={ingredient.unit}
+            placeholder="enhet"
             onChange={(e) => {
               const newIngredients = [...ingredients];
               newIngredients[index].unit = e.target.value;
@@ -155,6 +161,7 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
         />
         <input
           type="text"
+          placeholder="(f.eks) boller"
           value={quantityUnit}
           onChange={(e) => setQuantityUnit(e.target.value)}
         />

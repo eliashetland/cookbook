@@ -11,7 +11,7 @@ function RecipeCard(recipe: IRecipe) {
     return (
       <div className={styles.recipeCard}>
         <h2 className={styles.header}>{recipe.title}</h2>
-        <p className={styles.date}>{recipe.views}</p>
+        <p className={styles.date}>klikk: {recipe.views}</p>
       </div>
     )
   }

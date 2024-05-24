@@ -1,0 +1,60 @@
+.nav {
+  background-color: rgb(26, 46, 75);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+
+
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+    
+    border-radius: 5px;
+
+    
+
+    a {
+      padding: 10px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+    }
+
+    i {
+      font-size: large;
+    }
+  }
+
+  .loggedInItems {
+    cursor: auto;
+    ul {
+        margin: 0;
+        padding: 0;
+        gap: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}

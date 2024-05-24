@@ -28,6 +28,7 @@ button {
   border: 1px solid var(--border);
   background-color: var(--foreground);
   color: var(--text);
+  cursor: pointer;
 }
 
 .ingredientRow {
@@ -37,15 +38,16 @@ button {
   width: 100%;
   justify-content: space-between;
 
-  input {
-    width: auto;
-  }
 
   input:nth-child(1) {
     flex-grow: 1;
+    width: 50%;
   }
 
-  input:nth-child(2),
+  input:nth-child(2){
+    width: 40px;
+    flex-grow: 0;
+  }
   input:nth-child(3) {
     width: 60px;
     flex-grow: 0;
@@ -85,6 +87,7 @@ button {
 
     input:nth-child(1) {
       flex-grow: 1;
+      width: 100%;
     }
 
     input:nth-child(2) {
@@ -124,6 +127,7 @@ button {
 
   input:nth-child(2) {
     flex-grow: 1;
+    width: 100%;
   }
 
   button {
