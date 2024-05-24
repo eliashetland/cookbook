@@ -9,20 +9,23 @@ const headerBuilder = () => {
     return { headers: { authorization: token } };
 };
 
+const redirect = async (path:string)=>{
+    await new Promise(() => { window.location.href = path })
+    return;
+}
+
 export class API {
     static async get(path: string) {
         try {
             const response = await axios.get(urlBuilder(path), headerBuilder());
             if (response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return response;
         }
         catch (error: any) {
             if (error.response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return error.response;
         }
@@ -32,15 +35,13 @@ export class API {
         try {
             const response = await axios.post(urlBuilder(path), body, headerBuilder());
             if (response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return response;
         }
         catch (error: any) {
             if (error.response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return error.response;
         }
@@ -50,15 +51,13 @@ export class API {
         try {
             const response = await axios.put(urlBuilder(path), body, headerBuilder());
             if (response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return response;
         }
         catch (error: any) {
             if (error.response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return error.response;
         }
@@ -68,15 +67,13 @@ export class API {
         try {
             const response = await axios.delete(urlBuilder(path), headerBuilder());
             if (response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return response;
         }
         catch (error: any) {
             if (error.response.data?.isAuthorized === false) {
-                await new Promise(() => { window.location.href = "/cookbook/login" })
-                return;
+                redirect("/login");
             }
             return error.response;
         }

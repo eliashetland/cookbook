@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "./Colors/lightmode.css";
 import Home from "./Components/Home/Home";
@@ -17,33 +17,33 @@ const redirect = async (path: string) => {
 };
 
 const redirectLoggedIn = async () => {
-  if (localStorage.getItem("token"))redirect("/cookbook/");
+  if (localStorage.getItem("token"))redirect("/");
   return {};
 };
 
 const redirectNotLoggedIn = async () => {
-  if (!localStorage.getItem("token")) redirect("/cookbook/login");
+  if (!localStorage.getItem("token")) redirect("/login");
   return {};
 };
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/cookbook/",
+    path: "/",
     element: <Home />,
   },
   {
-    path: "cookbook/create",
+    path: "/create",
     element: <NewRecipe />,
     loader: redirectNotLoggedIn,
   },
   {
-    path: "cookbook/login",
+    path: "/login",
     element: <Login />,
     loader: redirectLoggedIn,
   },
 
   {
-    path: "cookbook/recipes/:id",
+    path: "/recipes/:id",
     element: <RecipeView />,
   },
 ]);
