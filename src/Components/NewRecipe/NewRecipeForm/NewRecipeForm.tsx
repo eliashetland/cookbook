@@ -46,7 +46,7 @@ export default function NewRecipe({ onSubmit }: RecipeFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label>Tittel:</label>
       <input
         type="text"

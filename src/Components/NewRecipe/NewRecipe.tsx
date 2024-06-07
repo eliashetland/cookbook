@@ -1,6 +1,5 @@
 import { API } from "../../API/API";
 import Header from "../Header/Header";
-import styles from "./NewRecipe.module.css";
 import NewRecipeForm, { IRecipeFormData } from "./NewRecipeForm/NewRecipeForm";
 
 export default function NewRecipe() {
@@ -21,7 +20,7 @@ export default function NewRecipe() {
     return (
         <>
             <Header></Header>
-            <div className={styles.body}>
+            <div>
         
                 <h1 >Ny oppskrift</h1>
                 <NewRecipeForm onSubmit={onSubmit}/>
