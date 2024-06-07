@@ -25,7 +25,7 @@ function Home() {
       if (!res) return;
       if (!res.data.isOk) return;
       const fetchedRecipes: IRecipe[] = res.data.recipe;
-      setRecipes(SortByClass.sort(SortBy.MOSTPOPULAR ,fetchedRecipes));
+      setRecipes(SortByClass.sort(SortBy.MOSTPOPULAR, fetchedRecipes));
     } catch (error) {}
   };
 
@@ -39,7 +39,6 @@ function Home() {
     );
     setFilteredRecipes(filtered);
   }, [search, recipes]);
-
 
   const closeModal = (sortBy: SortBy) => {
     setModalOpen(false);
@@ -55,7 +54,9 @@ function Home() {
   return (
     <>
       <Header />
-      {modalOpen && <FilterModal onClose={closeModal} lastSortBy={filter}></FilterModal>}
+      {modalOpen && (
+        <FilterModal onClose={closeModal} lastSortBy={filter}></FilterModal>
+      )}
 
       <div className={styles.body}>
         <div className={styles.content}>
@@ -70,8 +71,7 @@ function Home() {
             />
             <button
               className={styles.filterButton}
-              onClick={()=>setModalOpen(true)}
-              
+              onClick={() => setModalOpen(true)}
             >
               <i className="fa fa-arrow-down-wide-short"></i>
             </button>
@@ -89,6 +89,13 @@ function Home() {
                   </Link>
                 </li>
               ))}
+            {filteredRecipes.length === 0 && (
+              <li className={styles.listElement}>
+                <div className={styles.noRecipes}>
+                  <h2 className={styles.header}>Ingen oppskrifter funnet</h2>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </div>

@@ -5,7 +5,7 @@
   justify-content: space-between;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .list {
@@ -33,7 +33,6 @@
     
 
     a {
-      padding: 10px;
       text-decoration: none;
       color: rgb(255, 255, 255);
       display: flex;
