@@ -11,13 +11,13 @@ import NewRecipe from "./Components/NewRecipe/NewRecipe";
 
 const redirect = async (path: string) => {
   await new Promise(() => {
-    window.location.href = path;
+    window.location.href = "#" + path;
   });
   return {};
 };
 
 const redirectLoggedIn = async () => {
-  if (localStorage.getItem("token"))redirect("/");
+  if (localStorage.getItem("token")) redirect("/");
   return {};
 };
 

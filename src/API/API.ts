@@ -10,7 +10,7 @@ const headerBuilder = () => {
 };
 
 const redirect = async (path:string)=>{
-    await new Promise(() => { window.location.href = path })
+    await new Promise(() => { window.location.href = "#"+path })
     return;
 }
 
