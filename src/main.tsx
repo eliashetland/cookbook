@@ -5,9 +5,8 @@ import "./index.css";
 import "./Colors/lightmode.css";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-
-import RecipeView from "./Components/RecipeView/RecipeView";
 import NewRecipe from "./Components/NewRecipe/NewRecipe";
+import OneRecipe from "./Pages/OneRecipe/OneRecipe";
 
 const redirect = async (path: string) => {
   await new Promise(() => {
@@ -44,7 +43,7 @@ const router = createHashRouter([
 
   {
     path: "/recipes/:id",
-    element: <RecipeView />,
+    element: <OneRecipe />,
   },
 ]);
 

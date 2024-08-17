@@ -27,7 +27,7 @@ export default function Ingredients({ingredients, factor}: IngredientsProps) {
             currentIngredients.map((ingredientList: IIngredientList) => (
               
               <tr key={ingredientList._id} className={styles.tr}>
-            
+                <td className={styles.check}><input type="checkbox" id={ingredientList._id} /></td>
                 <td className={styles.ingredient}> {ingredientList.ingredient}</td>
                 <td className={styles.amount}> {(ingredientList.amount * currentFactor).toFixed(1) }</td>
                 <td className={styles.unit}> {ingredientList.unit}</td>

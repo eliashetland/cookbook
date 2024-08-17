@@ -1,33 +1,36 @@
-
-.title{
-    padding: 10px;
-    margin: 0px;
+.title {
+  margin: 0px;
 }
 .table {
-  width: 100%;
+  border-collapse: collapse;
   .tbody {
-    width: 100%;
-
     .tr {
       padding: 10px;
-      border-bottom: 1px solid #ccc;
 
       td {
-        /* background-color: red; */
         border-bottom: 2px solid #ccc;
       }
 
-      .ingredient {
+      .check {
+        width: 15px;
+        margin: 0;
+        line-height: 0;
+
+        input {
+          margin: 0;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .ingredient,
+      .unit,
+      .amount {
         padding: 10px;
       }
 
       .amount {
-        padding: 10px;
         text-align: right;
-      }
-
-      .unit {
-        padding: 10px;
       }
     }
   }

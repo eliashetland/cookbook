@@ -1,0 +1,19 @@
+
+.container1{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container2 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+  
+}

@@ -25,6 +25,7 @@ export default function Amount({ unit, quantity, callback }: AmountProps) {
               <td>
                 <button
                   className={styles.button}
+                  disabled={currentQuantity <= 0}
                   onClick={() => {
                     const newQuantity = currentQuantity - 1;
                     setCurrentQuantity(newQuantity);
@@ -37,16 +38,18 @@ export default function Amount({ unit, quantity, callback }: AmountProps) {
               <td>
                 <input
                   onChange={(e) => {
-                    const newQuantity = parseInt(e.target.value);
-                    setCurrentQuantity(newQuantity);
+                    const newQuantity = parseFloat(e.target.value);
                     if (Number.isNaN(newQuantity)) {
-                      callback(1);
+                      setCurrentQuantity(0);
+                      callback(0);
                     } else {
+                      setCurrentQuantity(newQuantity);
                       callback(newQuantity);
                     }
                   }}
                   type="number"
-                  value={currentQuantity}
+                  value={currentQuantity.toString().replace(/^0+(?!\.|$)/, '')}
+                  
                   className={styles.inputIng}
                 />
               </td>
