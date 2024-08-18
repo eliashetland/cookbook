@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "https://cookbackend.onrender.com";
+const apiUrl = "https://elias1.bkx.es";
 // const apiUrl = "http://localhost:3000";
 const urlBuilder = (path: string) => `${apiUrl}/${path}`;
 
