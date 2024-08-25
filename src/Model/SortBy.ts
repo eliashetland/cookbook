@@ -20,11 +20,11 @@ export class SortByClass{
         switch (sortBy) {
             case SortBy.NEWEST:
                 return arr.sort((a, b) => {
-                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
                 });
             case SortBy.OLDEST:
                 return arr.sort((a, b) => {
-                    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
                 });
             case SortBy.MOSTPOPULAR:
                 return arr.sort((a, b) => {

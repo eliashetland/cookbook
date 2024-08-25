@@ -7,6 +7,7 @@ import { API } from "../../API/API";
 import Header from "../Header/Header";
 import { SortBy, SortByClass } from "../../Model/SortBy";
 import FilterModal from "../Modal/FilterModal/FilterModal";
+import { useQuery } from "@tanstack/react-query";
 
 function Home() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -15,19 +16,21 @@ function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [filteredRecipes, setFilteredRecipes] = useState<IRecipe[]>([]);
 
-  useEffect(() => {
-    load();
-  }, []);
-
-  const load = async () => {
-    try {
+  const { data: recipesRQ, isLoading } = useQuery({
+    queryKey: ["recipes"],
+    queryFn: async () => {
       const res = await API.get("api/recipe");
       if (!res) return;
       if (!res.data.isOk) return;
       const fetchedRecipes: IRecipe[] = res.data.recipe;
-      setRecipes(SortByClass.sort(SortBy.MOSTPOPULAR, fetchedRecipes));
-    } catch (error) {}
-  };
+      return fetchedRecipes;
+    }
+  })
+
+  useEffect(() => {
+    if (!recipesRQ) return;
+    setRecipes(SortByClass.sort(SortBy.MOSTPOPULAR, recipesRQ));
+  }, [recipesRQ])
 
   useEffect(() => {
     if (search === "") {
@@ -50,6 +53,7 @@ function Home() {
     setRecipes(sortedAll);
     setFilteredRecipes(sortedRecipes);
   };
+
 
   return (
     <>
@@ -78,8 +82,13 @@ function Home() {
           </div>
 
           <ul className={styles.recipeList}>
-            {filteredRecipes &&
-              filteredRecipes.map((recipe: IRecipe) => (
+            {isLoading && ( <li className={styles.listElement}>
+              <div className={styles.noRecipes}>
+                <h2 className={styles.header}>Laster inn oppskrifter...</h2>
+              </div>
+            </li>)}
+            
+            { filteredRecipes?.map((recipe: IRecipe) => (
                 <li key={recipe._id} className={styles.listElement}>
                   <Link
                     className={styles.recipeLink}
@@ -89,7 +98,7 @@ function Home() {
                   </Link>
                 </li>
               ))}
-            {filteredRecipes.length === 0 && (
+            {!isLoading && filteredRecipes?.length === 0 && (
               <li className={styles.listElement}>
                 <div className={styles.noRecipes}>
                   <h2 className={styles.header}>Ingen oppskrifter funnet</h2>
