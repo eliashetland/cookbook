@@ -8,22 +8,16 @@ import Login from "./Components/Login/Login";
 import NewRecipe from "./Components/NewRecipe/NewRecipe";
 import OneRecipe from "./Pages/OneRecipe/OneRecipe";
 
-const redirect = async (path: string) => {
-  await new Promise(() => {
-    window.location.href = "#" + path;
-  });
-  return {};
-};
+import createStore from "react-auth-kit/createStore";
+import RequireAuth from "@auth-kit/react-router/RequireAuth";
+import AuthProvider from "react-auth-kit";
 
-const redirectLoggedIn = async () => {
-  if (localStorage.getItem("token")) redirect("/");
-  return {};
-};
-
-const redirectNotLoggedIn = async () => {
-  if (!localStorage.getItem("token")) redirect("/login");
-  return {};
-};
+const store = createStore({
+  authName: "_auth",
+  authType: "cookie",
+  cookieDomain: window.location.hostname,
+  cookieSecure: true,
+});
 
 const router = createHashRouter([
   {
@@ -32,13 +26,15 @@ const router = createHashRouter([
   },
   {
     path: "/create",
-    element: <NewRecipe />,
-    loader: redirectNotLoggedIn,
+    element: (
+      <RequireAuth fallbackPath={"/login"}>
+        <NewRecipe />
+      </RequireAuth>
+    ),
   },
   {
     path: "/login",
     element: <Login />,
-    loader: redirectLoggedIn,
   },
 
   {
@@ -49,6 +45,8 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider store={store}>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

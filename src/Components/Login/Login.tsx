@@ -3,11 +3,16 @@ import styles from "./Login.module.css";
 import { API } from "../../API/API";
 import { useNavigate } from "react-router-dom";
 
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const signIn = useSignIn();
+  
 
   useEffect(() => {
     setError("");
@@ -22,13 +27,19 @@ export default function Login() {
 
     const res = await API.post("api/entry/login", { username, password });
     try {
-      console.log("res");
-      
+    
       if (!res) return setError("Det oppsto en feil, prøv igjen senere");
       if (!res.data.isOk) return setError("Feil brukernavn eller passord");
       if (!res.data.token) return setError("Feil brukernavn eller passord");
       localStorage.setItem("token", res.data.token);
       
+      signIn({
+        auth: {
+          token: res.data.token
+        },
+        userState: {name: username}
+      });
+
       navigate("/");
 
 

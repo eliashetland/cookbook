@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import useSignOut from "react-auth-kit/hooks/useSignOut";
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
+import useAuthUser from "react-auth-kit/hooks/useAuthUser";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const authUser = useAuthUser<{ name: string }>();
+  const isAuthenticated = useIsAuthenticated();
+  const signOut = useSignOut();
 
-  const logOut = ()=>{
-    localStorage.removeItem("token")
-    setIsLoggedIn(false);
-  }
+  const logOut = () => {
+    localStorage.removeItem("token");
+    signOut();
+  };
+
   return (
     <>
       <nav className={styles.nav}>
@@ -22,20 +22,25 @@ export default function Header() {
             <Link to="/">Elias Kokebok</Link>
           </li>
           <li className={styles.loggedInItems}>
-            {isLoggedIn && (
+            {isAuthenticated && (
               <ul>
                 <li>
-                  <Link to="/create"><i className="fa fa-plus"></i></Link>
+                  <Link to="/create">
+                    <i className="fa fa-plus"></i>
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/" onClick={logOut}>
+                  <Link to="/login" onClick={logOut}>
                     <i className="fa fa-right-from-bracket"></i>
                   </Link>
+                </li>
+                <li>
+                {authUser?.name}
                 </li>
               </ul>
             )}
           </li>
-          {!isLoggedIn && (
+          {!isAuthenticated && (
             <li>
               <Link to="/login">Logg inn</Link>
             </li>
@@ -44,4 +49,4 @@ export default function Header() {
       </nav>
     </>
   );
-}  
+}
