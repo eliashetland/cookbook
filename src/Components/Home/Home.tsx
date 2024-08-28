@@ -24,7 +24,8 @@ function Home() {
       if (!res.data.isOk) return;
       const fetchedRecipes: IRecipe[] = res.data.recipe;
       return fetchedRecipes;
-    }
+    },
+    staleTime: 1000 * 60 * 60 * 2,
   })
 
   useEffect(() => {

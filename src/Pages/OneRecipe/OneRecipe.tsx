@@ -22,6 +22,7 @@ function OneRecipe() {
       const fetchedRecipe: IRecipe = res.data.recipe;
       return fetchedRecipe;
     },
+    staleTime: 1000 * 60 * 60 * 2,
   });
 
   return (
